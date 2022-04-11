@@ -15,6 +15,10 @@ class Fragment1 : Fragment() {
     private lateinit var activity: Activity
     private var communication: Communication? = null
 
+    interface Communication {
+        fun send(name: String)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,20 +30,19 @@ class Fragment1 : Fragment() {
             false
         )
         val view = binding.root
+        binding.button.setOnClickListener {
+            communication?.send(binding.editText.text.toString())
+        }
         return view
     }
 
-    interface Communication {
-        fun send(name: String)
-    }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         // le cast se fait avec "as"
         activity = context as Activity
         // is est l'équivlent de instanceOf
-        if (activity is Communication) {
-            communication = activity as Communication
-        }
+        if (activity is Communication) communication = activity as Communication
     }
 }

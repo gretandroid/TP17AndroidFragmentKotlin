@@ -36,13 +36,12 @@ class Fragment1 : Fragment() {
         return view
     }
 
-
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         // le cast se fait avec "as"
         activity = context as Activity
-        // is est l'équivlent de instanceOf
-        if (activity is Communication) communication = activity as Communication
+        // is est l'équivalent de instanceOf
+        if (activity is Communication)
+            communication = activity as Communication
     }
 }
